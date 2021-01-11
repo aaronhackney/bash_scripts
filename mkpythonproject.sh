@@ -9,7 +9,6 @@
 # ./tests/
 # ./docs/
 
-
 if [ "$1" = "" ]; then
     printf "You need to supply the name of the project we are creating.\n"
     printf "Usage: mkpythonproject.sh [project-name]\n"
@@ -41,6 +40,7 @@ if [[ ! -e setup.py ]]; then
         printf "import setuptools\n\nsetuptools.setup()\n" > setup.py
 fi
 
+# Create a .gitignore file
 cat <<EOT >> .gitignore
 # Compiled python modules.
 *.pyc
