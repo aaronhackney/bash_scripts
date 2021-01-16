@@ -9,7 +9,7 @@ export PATH="/usr/local/bin:$PATH"
 #################################################
 # Virtual Environments
 export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/projects
+export PROJECT_HOME=$HOME/Projects
 source /usr/local/bin/virtualenvwrapper.sh
 export VIRTUALENV_PYTHON="/usr/local/bin/python3"
 
