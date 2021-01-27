@@ -1,12 +1,17 @@
-#! /bin/bash
+#! /bin/sh
 
-# Create a typical Python Project Structure:
+# Create my typical Python Project Structure:
+# .gitignore
+# CHANGES.txt
+# LICENSE.txt sources from LICENSE.sh
+# MANIFEST.in
+# README.md 
 # Makefile
 # requirements.txt 
 # setup.py
 # setup.cfg
-# ./projectName/
-# ./tests/
+# ./projectName/__init__.py
+# ./tests/__init__.py and test_projectname.py
 # ./docs/
 
 if [ "$1" = "" ]; then
@@ -18,12 +23,14 @@ else
 fi
 
 echo "Creating project skeleton for $1"
+echo "If you are already in the python virtual environment you wish to develop under, execute these next:"
+echo "pip install -r requirements.txt"
+echo "python setup.py bdist_wheel"
+echo "pip install -e ."
 
-
-# Create the directories 
 mkdir -p $projectname
-mkdir -p $projectname/tests
-touch $projectname/tests/__init__.py
+mkdir -p tests
+touch tests/__init__.py
 mkdir -p docs
 
 if [[ ! -e requirements.txt ]]; then
@@ -45,7 +52,7 @@ __version__ = "0.1.0"
 EOT
 
 # create a skeleton of a test file
-cat <<EOT > $projectname/tests/test_$projectname.py
+cat <<EOT > tests/test_$projectname.py
 from unittest import TestCase
 
 
@@ -161,7 +168,7 @@ clean-build:
 	rm -rf *.egg-info
 
 test: clean
-	/usr/local/bin/python3 -m unittest discover -v -s ./$projectname/tests/ -p 'test_*.py'
+	/usr/local/bin/python3 -m unittest discover -v -s ./tests/ -p 'test_*.py'
 EOT
 
 # Create a .gitignore file
